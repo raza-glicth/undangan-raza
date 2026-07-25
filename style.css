@@ -135,7 +135,7 @@ html.opened #cover{ opacity:0; visibility:hidden; pointer-events:none; transform
   height:70vh; min-height:460px; position:relative; display:flex; align-items:center; justify-content:center;
   overflow:hidden;
 }
-.hero-repeat img{position:absolute; inset:0; height:100%; filter:grayscale(.5) brightness(.55);}
+.hero-repeat img, .hero-repeat video{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:grayscale(.5) brightness(.55);}
 .hero-repeat .veil{position:absolute; inset:0; background:linear-gradient(180deg, rgba(17,17,17,.2), var(--bg) 100%);}
 .hero-repeat .txt{position:relative; z-index:2; text-align:center;}
 .hero-repeat .txt p{font-family:var(--serif); font-style:italic; color:var(--grey); font-size:14px;}
@@ -200,7 +200,7 @@ html.opened #cover{ opacity:0; visibility:hidden; pointer-events:none; transform
 .gallery-frame{
   height:78vh; min-height:420px; position:relative; margin-bottom:14px; overflow:hidden; border-radius:2px;
 }
-.gallery-frame img{height:100%; transition:transform 1.4s var(--ease);}
+.gallery-frame img, .gallery-frame video{width:100%; height:100%; object-fit:cover; transition:transform 1.4s var(--ease);}
 .gallery-frame:hover img{transform:scale(1.04);}
 .gallery-frame .cap{
   position:absolute; left:0; right:0; bottom:0; padding:26px 24px;
@@ -271,6 +271,37 @@ html.opened #cover{ opacity:0; visibility:hidden; pointer-events:none; transform
 footer{padding:60px 0 120px; text-align:center;}
 .footer-mark{font-family:var(--serif); font-style:italic; color:var(--gold); font-size:16px; letter-spacing:.05em;}
 .footer-sub{font-family:var(--mono); font-size:10px; letter-spacing:.25em; color:var(--grey); text-transform:uppercase; margin-top:6px;}
+.footer-credit{font-size:10px; color:rgba(154,154,154,.5); margin-top:18px; letter-spacing:.03em;}
+
+/* ---------- Film grain texture (subtle, adds premium depth) ---------- */
+.grain{
+  position:fixed; inset:0; z-index:2; pointer-events:none; opacity:.05; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- Scroll progress indicator ---------- */
+#scroll-progress{
+  position:fixed; right:14px; top:16px; bottom:16px; width:2px; z-index:401;
+  background:rgba(198,161,91,.12); border-radius:2px;
+}
+#scroll-progress-bar{
+  display:block; width:100%; height:0%; background:var(--gold); border-radius:2px;
+  transition:height .12s linear;
+}
+html.pre-open #scroll-progress{display:none;}
+
+/* ---------- Hero word-by-word stagger reveal ---------- */
+.cover-names .word{
+  display:inline-block; opacity:0; transform:translateY(18px) rotate(1deg);
+  animation:wordIn .9s var(--ease) forwards;
+  animation-delay:calc(var(--d) * 0.09s + .3s);
+}
+@keyframes wordIn{ to{ opacity:1; transform:translateY(0) rotate(0); } }
+
+/* ---------- Gallery: editorial asymmetric rhythm ---------- */
+.gallery-frame:nth-child(3n+2){ width:88%; margin-left:auto; margin-right:0; border-radius:2px 0 0 2px; }
+.gallery-frame:nth-child(3n+3){ width:88%; margin-left:0; margin-right:auto; border-radius:0 2px 2px 0; }
+.gallery-frame:nth-child(3n+1){ width:100%; }
 
 /* ---------- Music player ---------- */
 #music-toggle{

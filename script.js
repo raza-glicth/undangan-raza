@@ -36,6 +36,32 @@
     }
   });
 
+  /* ---------- scroll progress indicator ---------- */
+  var progressBar = document.getElementById('scroll-progress-bar');
+  function updateProgress(){
+    var scrollTop = window.scrollY || document.documentElement.scrollTop;
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    var pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    if(progressBar) progressBar.style.height = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress, {passive:true});
+  updateProgress();
+
+  /* ---------- subtle parallax on hero images ---------- */
+  var coverBg = document.querySelector('.cover-bg');
+  var heroStrip = document.querySelector('.hero-repeat video');
+  function updateParallax(){
+    var y = window.scrollY || document.documentElement.scrollTop;
+    if(coverBg) coverBg.style.transform = 'scale(1.08) translateY(' + (y * 0.15) + 'px)';
+    if(heroStrip){
+      var rect = heroStrip.parentElement.getBoundingClientRect();
+      var offset = rect.top * 0.12;
+      heroStrip.style.transform = 'translateY(' + offset + 'px) scale(1.1)';
+    }
+  }
+  window.addEventListener('scroll', updateParallax, {passive:true});
+  updateParallax();
+
   /* ---------- scroll reveal ---------- */
   var revealEls = document.querySelectorAll('.reveal');
   var io = new IntersectionObserver(function(entries){

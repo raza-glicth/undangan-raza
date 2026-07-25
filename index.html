@@ -14,6 +14,9 @@
 </head>
 <body>
 
+<div class="grain"></div>
+<div id="scroll-progress"><span id="scroll-progress-bar"></span></div>
+
 <!-- ============================================================
      Loader
 ============================================================ -->
@@ -31,7 +34,11 @@
   <div class="cover-content">
     <p class="cover-eyebrow">Chapter One</p>
     <p class="cover-title">A New Chapter Begins.</p>
-    <h1 class="cover-names">Raza Attaqi<span class="cover-amp">&amp;</span>Iqwa Futri Anggraini</h1>
+    <h1 class="cover-names">
+      <span class="word" style="--d:0">Raza</span> <span class="word" style="--d:1">Attaqi</span>
+      <span class="cover-amp word" style="--d:2">&amp;</span>
+      <span class="word" style="--d:3">Iqwa</span> <span class="word" style="--d:4">Futri</span> <span class="word" style="--d:5">Anggraini</span>
+    </h1>
     <p class="cover-date">Sunday · 30 August 2026</p>
     <p class="cover-to">Kepada Yth. <b id="guestName">Tamu Undangan</b></p>
     <button class="btn-open" id="openBtn">Open Invitation</button>
@@ -45,7 +52,9 @@
 
   <!-- Hero repeat strip -->
   <div class="hero-repeat">
-    <img src="images/hero-strip.jpg" alt="Raza & Iqwa">
+    <video autoplay muted loop playsinline preload="metadata" poster="images/cover-loop-poster.jpg">
+      <source src="images/cover-loop.mp4" type="video/mp4">
+    </video>
     <div class="veil"></div>
     <div class="txt reveal"><p>Chapter One — A New Chapter Begins</p></div>
   </div>
@@ -123,12 +132,38 @@
       <div class="cap">The little moments.</div>
     </div>
     <div class="gallery-frame reveal">
+      <video autoplay muted loop playsinline preload="metadata" poster="images/gallery-clip-1-poster.jpg">
+        <source src="images/gallery-clip-1.mp4" type="video/mp4">
+      </video>
+      <div class="cap">In motion.</div>
+    </div>
+    <div class="gallery-frame reveal">
       <img src="images/gallery-3.jpg" alt="Raza & Iqwa">
       <div class="cap">One frame.</div>
     </div>
     <div class="gallery-frame reveal">
+      <img src="images/gallery-7.jpg" alt="Raza & Iqwa">
+      <div class="cap">Somewhere in between.</div>
+    </div>
+    <div class="gallery-frame reveal">
+      <video autoplay muted loop playsinline preload="metadata" poster="images/gallery-clip-2-poster.jpg">
+        <source src="images/gallery-clip-2.mp4" type="video/mp4">
+      </video>
+      <div class="cap">Still, we laugh.</div>
+    </div>
+    <div class="gallery-frame reveal">
       <img src="images/gallery-4.jpg" alt="Raza & Iqwa">
       <div class="cap">A thousand memories.</div>
+    </div>
+    <div class="gallery-frame reveal">
+      <img src="images/gallery-8.jpg" alt="Raza & Iqwa">
+      <div class="cap">Every little thing.</div>
+    </div>
+    <div class="gallery-frame reveal">
+      <video autoplay muted loop playsinline preload="metadata" poster="images/gallery-clip-3-poster.jpg">
+        <source src="images/gallery-clip-3.mp4" type="video/mp4">
+      </video>
+      <div class="cap">A moment, replayed.</div>
     </div>
     <div class="gallery-frame reveal">
       <img src="images/gallery-5.jpg" alt="Raza & Iqwa">
@@ -231,6 +266,7 @@
   <footer>
     <p class="footer-mark">Chapter One</p>
     <p class="footer-sub">A New Chapter Begins</p>
+    <p class="footer-credit">Music: "Tenderness" by Bensound.com</p>
   </footer>
 
 </main>
@@ -241,7 +277,9 @@
   <svg id="iconPause" viewBox="0 0 24 24" style="display:none;"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
 </button>
 <audio id="bgMusic" loop preload="none">
-  <!-- Ganti src di bawah ini dengan file musik pilihanmu, contoh: music/jacobs-piano.mp3 -->
+  <!-- Musik utama: "Tenderness" by Bensound, dihosting legal di archive.org -->
+  <source src="https://archive.org/download/bensound-dreams/bensound-tenderness.mp3" type="audio/mpeg">
+  <!-- Cadangan: kalau kamu upload musik sendiri ke folder music/, kasih nama jacobs-piano.mp3 -->
   <source src="music/jacobs-piano.mp3" type="audio/mpeg">
 </audio>
 

@@ -139,11 +139,13 @@
     toastTimer = setTimeout(function(){ toastEl.classList.remove('show'); }, 2200);
   }
 
-  /* ---------- RSVP (in-memory only — no backend attached) ---------- */
+  /* ---------- RSVP — terhubung ke Formspree ---------- */
+  var FORMSPREE_ENDPOINT = 'https://formspree.io/f/xnjeoekd';
   var wishes = [];
   var form = document.getElementById('rsvpForm');
   var thanks = document.getElementById('rsvpThanks');
   var list = document.getElementById('wishesList');
+  var submitBtn = form.querySelector('.btn-solid');
 
   form.addEventListener('submit', function(e){
     e.preventDefault();
@@ -152,13 +154,31 @@
     var msg = document.getElementById('rMsg').value.trim();
     if(!name || !attend || !msg) return;
 
-    wishes.unshift({name:name, attend:attend, msg:msg});
-    renderWishes();
+    var originalBtnText = submitBtn.textContent;
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
 
-    form.reset();
-    form.style.display = 'none';
-    thanks.classList.add('show');
-    showToast('Ucapan terkirim');
+    fetch(FORMSPREE_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(form)
+    }).then(function(res){
+      if(res.ok){
+        wishes.unshift({name:name, attend:attend, msg:msg});
+        renderWishes();
+        form.reset();
+        form.style.display = 'none';
+        thanks.classList.add('show');
+        showToast('Ucapan terkirim');
+      } else {
+        showToast('Gagal mengirim, coba lagi ya');
+      }
+    }).catch(function(){
+      showToast('Gagal mengirim, cek koneksi internet');
+    }).finally(function(){
+      submitBtn.textContent = originalBtnText;
+      submitBtn.disabled = false;
+    });
   });
 
   function renderWishes(){

@@ -226,11 +226,11 @@
         <form id="rsvpForm">
           <div class="field">
             <label for="rName">Nama</label>
-            <input type="text" id="rName" required placeholder="Nama lengkap">
+            <input type="text" id="rName" name="name" required placeholder="Nama lengkap">
           </div>
           <div class="field">
             <label for="rAttend">Attendance</label>
-            <select id="rAttend" required>
+            <select id="rAttend" name="attendance" required>
               <option value="" disabled selected>Pilih konfirmasi kehadiran</option>
               <option value="Hadir">Hadir</option>
               <option value="Tidak Hadir">Tidak Hadir</option>
@@ -239,7 +239,7 @@
           </div>
           <div class="field">
             <label for="rMsg">Ucapan</label>
-            <textarea id="rMsg" required placeholder="Tulis doa dan ucapanmu untuk Raza & Iqwa"></textarea>
+            <textarea id="rMsg" name="message" required placeholder="Tulis doa dan ucapanmu untuk Raza & Iqwa"></textarea>
           </div>
           <button type="submit" class="btn-solid">Send Wishes</button>
         </form>

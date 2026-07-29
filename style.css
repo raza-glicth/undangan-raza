@@ -105,6 +105,7 @@ html.opened #cover{ opacity:0; visibility:hidden; pointer-events:none; transform
   font-family:var(--mono); font-size:11px; letter-spacing:.5em; color:var(--gold); text-transform:uppercase;
 }
 .cover-title{font-family:var(--serif); font-style:italic; font-size:15px; color:var(--grey); letter-spacing:.02em;}
+.cover-intimate{font-family:var(--mono); font-size:10px; letter-spacing:.3em; color:var(--gold); text-transform:uppercase; margin-top:-6px;}
 .cover-names{
   font-family:var(--serif); font-size:clamp(34px,9vw,52px); line-height:1.15; color:var(--white);
 }
